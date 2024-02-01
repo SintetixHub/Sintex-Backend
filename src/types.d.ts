@@ -21,6 +21,8 @@ export type User = {
     username: string;
     email: string;
     password: string;
+    title: string;
+    description: string;
     urlAvatar: string;
     createdAt: string;
     updatedAt: string;

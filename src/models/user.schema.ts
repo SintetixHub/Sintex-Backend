@@ -33,6 +33,8 @@ interface UserSchemaMethod extends Document {
     email: string;
     password: string;
     urlAvatar: string;
+    title: string;
+    description: string;
     createdAt: string;
     updatedAt: string;
     achievements: Achievements;
@@ -46,6 +48,8 @@ const UserSchema = new Schema<UserSchemaMethod>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     urlAvatar: { type: String },
+    title: { type: String },
+    description: { type: String },
     achievements: { type: AchievementsSchema, default: { projectsDone: 0, postsCreated: 0, postsLiked: 0, leadership: 0, colaborator: 0, dedication: 0, creativity: 0, growth: 0, compromise: 0 } },
     projectsHistory: { type: [ProjectsHistorySchema], default: [] },
     postsHistory: { type: [PostsHistorySchema], default: [] }

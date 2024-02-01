@@ -10,6 +10,8 @@ export const formatUser = (user: User) => {
         updatedAt: user.updatedAt,
         achievements: user.achievements,
         projectsHistory: user.projectsHistory,
-        postsHistory: user.postsHistory
+        postsHistory: user.postsHistory,
+        title: user.title,
+        description: user.description
     }
 }
