@@ -11,12 +11,18 @@ const signupSchema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }).required()
 });
 
+const createPost = Joi.object({
+    author: Joi.string().required(),
+    content: Joi.string().required()
+})
+
 const useSchema = {
     login: loginSchema,
-    signup: signupSchema
+    signup: signupSchema,
+    post: createPost
 }
 
-export const joiValidation = async (schemaName: "login" | "signup", data: any) => {
+export const joiValidation = async (schemaName: "login" | "signup" | "post", data: any) => {
     try {
         const value = await useSchema[schemaName].validateAsync(data);
         return value

@@ -31,3 +31,11 @@ export type User = {
     postsHistory: { title: string, projectId: string }[];
 }
 
+export type Post = {
+    _id: string;
+    author: string;
+    content: string;
+    rockets: string[];
+    createdAt: string;
+    updatedAt: string;
+}
