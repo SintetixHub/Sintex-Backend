@@ -7,7 +7,8 @@ const createToken = (user: User) => {
         const userToToken = {
             username: user.username,
             _id: user._id,
-            email: user.email
+            email: user.email,
+            urlAvatar: user.urlAvatar
         }
         return jwt.sign(userToToken, config.SECRET_KEY, {
             expiresIn: config.EXPIRATION_TIME,

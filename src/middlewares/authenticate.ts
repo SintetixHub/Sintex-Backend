@@ -1,13 +1,10 @@
-import { JwtPayload } from "jsonwebtoken";
-import { verifyToken } from "../services/jwt.js";
+import { verifyToken } from "../services/jwt";
 import { Request, Response, NextFunction } from "express";
 import { ServerResponse } from "../types.js";
 
-interface RequestWithUser extends Request {
-    user: string | JwtPayload
-}
+interface User { username: string, email: string, _id: string, urlAvatar: string }
 
-const authenticate = async (req: RequestWithUser, res: Response<ServerResponse>, next: NextFunction) => {
+const authenticate = async (req: Request, res: Response<ServerResponse>, next: NextFunction) => {
     try {
         const { jwt: token } = req.cookies;
         if (!token) {
@@ -21,7 +18,7 @@ const authenticate = async (req: RequestWithUser, res: Response<ServerResponse>,
                 .json({ success: false, message: "Unauthorized" });
         }
 
-        req.user = user;
+        req.user = user as User;
 
         next();
     } catch (err) {

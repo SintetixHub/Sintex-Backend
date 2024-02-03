@@ -1,8 +1,8 @@
 import PostSchema from "./post.schema";
 
-const create = async ({ author, content }: { author: string, content: string }) => {
+const create = async ({ authorUsername, authorId, authorAvatar, title, content }: { authorUsername: string, authorId: string, authorAvatar?: string, title: string, content: string }) => {
     try {
-        return await PostSchema.create({ author, content });
+        return await PostSchema.create({ authorUsername, authorId, title, authorAvatar, content });
     }
     catch (error: any) {
         return { error };

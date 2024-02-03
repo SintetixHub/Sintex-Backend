@@ -26,7 +26,7 @@ const create = async (req: Request, res: Response<ServerResponse>) => {
             return res.status(400).json({ success: false, message: validation.message });
         }
 
-        const result = await PostModel.create({ author: validation.author, content: validation.content });
+        const result = await PostModel.create({ authorUsername: req.user!.username, authorId: req.user!._id, authorAvatar: req.user?.urlAvatar, title: validation.title, content: validation.content });
 
         if (result.error) {
             return res.status(400).json({ success: false, message: result.error.message })

@@ -12,8 +12,8 @@ const signupSchema = Joi.object({
 });
 
 const createPost = Joi.object({
-    author: Joi.string().required(),
-    content: Joi.string().required()
+    content: Joi.string().required(),
+    title: Joi.string().required()
 })
 
 const useSchema = {
