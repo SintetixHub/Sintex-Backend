@@ -20,5 +20,22 @@ const getAll = async (req: Request, res: Response<ServerResponse>) => {
     }
 }
 
-const UserController = { getAll };
+const getByName = async (req: Request, res: Response<ServerResponse>) => {
+    try {
+        const { username } = req.params;
+        const user: User | null = await UserModel.getByName({ username });
+        if (!user) {
+            return res.status(400).json({ success: false, message: "Was impossible to get user" });
+        }
+
+        res.status(201).json({ success: true, message: "Correct", data: formatUser(user) });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Server Error" })
+    }
+}
+
+
+const UserController = { getAll, getByName };
 export default UserController;

@@ -1,6 +1,7 @@
 import { Schema, model, models, CallbackWithoutResultAndOptionalError, Document } from "mongoose";
 import { hash, compare } from "bcrypt";
 import { Achievements, User } from "../types";
+import { LinkSchema } from "joi";
 
 const AchievementsSchema = new Schema({
     projectsDone: { type: Number },
@@ -27,6 +28,11 @@ const PostsHistorySchema = new Schema({
     postId: { type: [Schema.Types.ObjectId], ref: "post" }
 })
 
+const LinkSchema = new Schema({
+    platform: { type: String, required: true },
+    link: { type: String, required: true }
+})
+
 interface UserSchemaMethod extends Document {
     _id: string;
     username: string;
@@ -38,6 +44,7 @@ interface UserSchemaMethod extends Document {
     createdAt: string;
     updatedAt: string;
     achievements: Achievements;
+    userLinks: LinkSchema[];
     projectsHistory: { name: string, projectId: string }[];
     postsHistory: { title: string, projectId: string }[];
     isValidPassword: (pass: string) => boolean
@@ -50,6 +57,7 @@ const UserSchema = new Schema<UserSchemaMethod>({
     urlAvatar: { type: String },
     title: { type: String },
     description: { type: String },
+    userLinks: { type: [LinkSchema], default: [] },
     achievements: { type: AchievementsSchema, default: { projectsDone: 0, postsCreated: 0, postsLiked: 0, leadership: 0, colaborator: 0, dedication: 0, creativity: 0, growth: 0, compromise: 0 } },
     projectsHistory: { type: [ProjectsHistorySchema], default: [] },
     postsHistory: { type: [PostsHistorySchema], default: [] }
