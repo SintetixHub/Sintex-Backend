@@ -4,7 +4,7 @@ const PostSchema = new Schema({
     authorId: { type: Schema.Types.ObjectId, ref: "user", required: true },
     authorUsername: { type: String },
     authorAvatar: { type: String },
-    title: { type: String, required: true },
+    title: { type: String, required: true, unique: true },
     content: { type: String, required: true },
     rockets: { type: [Schema.Types.ObjectId], ref: "user", default: [] },
 }, {

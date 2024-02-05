@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Post, ServerResponse } from "../types";
-import PostModel from "../models/post.mode";
+import PostModel from "../models/post.model";
 import { joiValidation } from "../services/joiValidation";
 
 const getAll = async (req: Request, res: Response<ServerResponse>) => {

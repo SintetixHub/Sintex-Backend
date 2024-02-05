@@ -1,9 +1,9 @@
 import { Request } from 'express';
 
 declare module 'express-serve-static-core' {
-    interface Request {
-        user?: RequestUser;
-    }
+        interface Request {
+                user?: RequestUser;
+        }
 }
 
 export type ServerResponse = {
@@ -46,4 +46,18 @@ export type Post = {
         rockets: string[];
         createdAt: string;
         updatedAt: string;
+}
+
+export type Project = {
+        _id: string;
+        tiele: string;
+        authorName: string;
+        description: string;
+        hasDoc: boolean;
+        hasTasksManager: boolean;
+        repository: string;
+        membersCount: number;
+        membersList: string[];
+        membersPending: string[];
+        hasStarted: boolean
 }

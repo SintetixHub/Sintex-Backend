@@ -16,13 +16,23 @@ const createPost = Joi.object({
     title: Joi.string().required()
 })
 
+const createProject = Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    hasDoc: Joi.boolean(),
+    hasTasksManager: Joi.boolean(),
+    membersCount: Joi.number().required(),
+    repository: Joi.string(),
+})
+
 const useSchema = {
     login: loginSchema,
     signup: signupSchema,
-    post: createPost
+    post: createPost,
+    project: createProject
 }
 
-export const joiValidation = async (schemaName: "login" | "signup" | "post", data: any) => {
+export const joiValidation = async (schemaName: "login" | "signup" | "post" | "project", data: any) => {
     try {
         const value = await useSchema[schemaName].validateAsync(data);
         return value
